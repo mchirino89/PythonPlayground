@@ -1,5 +1,6 @@
 import numpy as np
 from Graph import Handler
+from BreadFirstSearch import BFS 
 
 board = [["M", "A", "R", "T"],
          ["S", "P", "E", "F"],
@@ -30,3 +31,6 @@ assembled_graph = handler.build_graph(board)
 
 for key in assembled_graph:
     print(key, assembled_graph[key])
+
+bfs = BFS()
+bfs.check(assembled_graph,"M_(0,0)")
