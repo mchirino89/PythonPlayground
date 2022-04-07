@@ -1,15 +1,17 @@
 class BFS:
     def check(self, graph, node):
-        visited = []  # List to keep track of visited nodes.
-        queue = []  # Initialize a queue
-        visited.append(node)
-        queue.append(node)
+        visited_node = [] 
+        search_queue = []  
+        visited_node.append(node)
+        search_queue.append(node)
 
-        while queue:
-            s = queue.pop(0) 
+        while search_queue:
+            s = search_queue.pop(0) 
             print (s, end = " ") 
 
             for neighbour in graph[s]:
-                if neighbour not in visited:
-                    visited.append(neighbour)
-                    queue.append(neighbour)
+                if neighbour not in visited_node:
+                    visited_node.append(neighbour)
+                    search_queue.append(neighbour)
+            
+            print()

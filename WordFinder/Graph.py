@@ -71,5 +71,4 @@ class Handler:
             neighbors.append(self.format_key(board[i][j - 1], i, j - 1))
             neighbors.append(self.format_key(board[i - 1][j - 1], i - 1, j - 1))
 
-        print(neighbors)
         return neighbors
