@@ -9,6 +9,8 @@ https://github.com/djtrack16/tst/blob/master/ternarysearchtree.py
 
 """
 
+from english_words import english_words_lower_alpha_set
+
 class Node:
     lo = None
     hi = None
@@ -97,8 +99,17 @@ def autocompletes(node, string):
 class Trie:
     # a simple wrapper
     root = None
-    def __init__(self, string):
-        self.append(string)
+    def __init__(self):
+        dictionary = {}
+        for word in english_words_lower_alpha_set:
+            if len(word) > 2 and len(word) < 9:
+                dictionary[word] = 1
+
+        words = list(dictionary.keys())
+        words.sort()
+
+        for word in words:
+            self.append(word.upper())
     def append(self, string):
         self.root = insert(self.root, string)
     def __contains__(self, string):

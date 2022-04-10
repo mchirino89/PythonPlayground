@@ -1,5 +1,8 @@
+from TernaryTree import Trie
+
 class BFS:
     def check(self, graph, node):
+        word_repository = Trie()
         visited_node = [] 
         search_queue = []  
         visited_node.append(node)
