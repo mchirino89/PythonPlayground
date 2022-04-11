@@ -1,7 +1,8 @@
 import numpy as np
 import time
 from Graph import Handler
-from BreadFirstSearch import BFS 
+from WordEngine import WordMatcher 
+from english_words import english_words_lower_alpha_set
 
 board = [["M", "A", "R", "T"],
          ["S", "P", "E", "F"],
@@ -33,8 +34,24 @@ assembled_graph = handler.build_graph(board)
 # for key in assembled_graph:
 #     print(key, " -> ", assembled_graph[key])
 # print()
-bfs = BFS()
-bfs.check(assembled_graph, list(assembled_graph.keys())[0])
+start_time = time.time()
+word_builder = WordMatcher()
+
+letters = list(assembled_graph.keys())
+word_candidates = set()
+
+for letter in letters:
+    words_found = word_builder.check(assembled_graph, letter)
+    for word in words_found.values():
+        word_candidates.add(word.lower())
+
+# print()
+valid_words = english_words_lower_alpha_set.intersection(word_candidates)
+print("Total 3 letter words = {total}".format(total=len(valid_words)))
+print("--- Word assembled from board took %s seconds ---" % (time.time() - start_time))
+
+for word in valid_words:
+    print(word.upper())
 
 # start_time = time.time()
 # print("Is 'ma' a valid prefix? -> ",'ma' in word_repository)
